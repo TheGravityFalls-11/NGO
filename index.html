@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XYZ School - Management System</title>
+    <title>AGDAL School - Management System</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
@@ -18,13 +18,13 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
+        
         /* Header */
         .header {
             background: rgba(255, 255, 255, 0.95);
@@ -34,23 +34,23 @@
             top: 0;
             z-index: 100;
         }
-
+        
         .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
         }
-
+        
         .logo {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-
+        
         .logo-icon {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 8px;
             display: flex;
@@ -58,41 +58,332 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 14px;
+            text-align: center;
         }
-
+        
         .logo-text {
             font-size: 24px;
             font-weight: 700;
             color: #2d3748;
         }
-
+        
+        .logo-subtitle {
+            font-size: 12px;
+            color: #666;
+            font-weight: 400;
+        }
+        
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-
+        
         .nav-links a {
             text-decoration: none;
             color: #4a5568;
             font-weight: 500;
             transition: color 0.3s ease;
         }
-
+        
         .nav-links a:hover {
             color: #667eea;
         }
-
-        /* Main Content */
+        
+        /* Hero Section with Background Image */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-07-14%20at%2020.53.44_eeb9c3b6.jpg-IvPltkxZfij0DiqVtEoNG3TlNAwAkO.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* About Section */
+        .about-section {
+            background: white;
+            padding: 4rem 0;
+        }
+        
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 2rem;
+        }
+        
+        .about-content p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .school-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .feature-card p {
+            color: #4a5568;
+            font-size: 1rem;
+        }
+        
+        /* Academics Section */
+        .academics-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 0;
+            color: white;
+        }
+        
+        .academics-content {
+            text-align: center;
+        }
+        
+        .academics-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .academics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .academic-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .academic-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .academic-card ul {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .academic-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Admissions Section */
+        .admissions-section {
+            background: white;
+            padding: 4rem 0;
+        }
+        
+        .admissions-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .admissions-content h2 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 2rem;
+        }
+        
+        .admission-process {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .process-step {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .process-step h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: #2d3748;
+            padding: 4rem 0;
+            color: white;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            background: #667eea;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+        
+        .contact-form h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Auth Section */
         .main-content {
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: calc(100vh - 80px);
-            padding: 2rem 0;
+            padding: 4rem 0;
         }
-
+        
         .auth-container {
             background: white;
             border-radius: 16px;
@@ -101,39 +392,28 @@
             width: 100%;
             max-width: 400px;
         }
-
+        
         .auth-header {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             padding: 2rem;
             text-align: center;
         }
-
+        
         .auth-header h1 {
             font-size: 28px;
             margin-bottom: 0.5rem;
         }
-
+        
         .auth-header p {
             opacity: 0.9;
             font-size: 16px;
         }
-
+        
         .auth-content {
             padding: 2rem;
         }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #2d3748;
-        }
-
+        
         .form-input {
             width: 100%;
             padding: 12px 16px;
@@ -141,14 +421,16 @@
             border-radius: 8px;
             font-size: 16px;
             transition: all 0.3s ease;
+            background: white;
+            color: #333;
         }
-
+        
         .form-input:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
-
+        
         .form-select {
             width: 100%;
             padding: 12px 16px;
@@ -156,15 +438,16 @@
             border-radius: 8px;
             font-size: 16px;
             background: white;
+            color: #333;
             transition: all 0.3s ease;
         }
-
+        
         .form-select:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
-
+        
         .btn {
             width: 100%;
             padding: 12px 24px;
@@ -178,44 +461,34 @@
             display: inline-block;
             text-align: center;
         }
-
+        
         .btn-primary {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
         }
-
+        
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
-
-        .btn-secondary {
-            background: #f7fafc;
-            color: #4a5568;
-            border: 2px solid #e2e8f0;
-        }
-
-        .btn-secondary:hover {
-            background: #edf2f7;
-        }
-
+        
         .form-switch {
             text-align: center;
             margin-top: 1.5rem;
             padding-top: 1.5rem;
             border-top: 1px solid #e2e8f0;
         }
-
+        
         .form-switch a {
             color: #667eea;
             text-decoration: none;
             font-weight: 600;
         }
-
+        
         .form-switch a:hover {
             text-decoration: underline;
         }
-
+        
         .demo-section {
             background: #f7fafc;
             padding: 1.5rem;
@@ -223,24 +496,24 @@
             border-radius: 8px;
             border: 1px solid #e2e8f0;
         }
-
+        
         .demo-section h4 {
             color: #2d3748;
             margin-bottom: 1rem;
             font-size: 16px;
         }
-
+        
         .demo-section p {
             color: #4a5568;
             font-size: 14px;
             margin-bottom: 1rem;
         }
-
+        
         .demo-buttons {
             display: flex;
             gap: 0.5rem;
         }
-
+        
         .btn-demo {
             flex: 1;
             padding: 8px 12px;
@@ -252,51 +525,79 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
+        
         .btn-demo:hover {
             background: #5a67d8;
         }
-
+        
         .alert {
             padding: 12px 16px;
             border-radius: 8px;
             margin-bottom: 1rem;
             font-weight: 500;
         }
-
+        
         .alert-success {
             background: #f0fff4;
             color: #22543d;
             border: 1px solid #9ae6b4;
         }
-
+        
         .alert-error {
             background: #fed7d7;
             color: #742a2a;
             border: 1px solid #feb2b2;
         }
-
+        
         .hidden {
             display: none;
         }
-
+        
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem 0;
+            text-align: center;
+            color: #4a5568;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .nav {
                 flex-direction: column;
                 gap: 1rem;
             }
-
+            
             .nav-links {
                 gap: 1rem;
             }
-
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
             .auth-container {
                 margin: 1rem;
             }
-
+            
             .demo-buttons {
                 flex-direction: column;
+            }
+            
+            .school-features, .academics-grid, .admission-process {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -306,8 +607,11 @@
         <div class="container">
             <nav class="nav">
                 <div class="logo">
-                    <div class="logo-icon">XYZ</div>
-                    <div class="logo-text">XYZ School</div>
+                    <div class="logo-icon">AGDAL</div>
+                    <div>
+                        <div class="logo-text">AGDAL School</div>
+                        <div class="logo-subtitle">CBSE Government School</div>
+                    </div>
                 </div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
@@ -320,6 +624,240 @@
         </div>
     </header>
 
+    <!-- Hero Section with Background Image -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Welcome to AGDAL School</h1>
+                <p>Excellence in Education • CBSE Affiliated Government School</p>
+                <p>Nurturing Future Leaders Since 1995</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Students</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">7</div>
+                        <div class="stat-label">Grade Levels</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Teachers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About AGDAL School</h2>
+                <p>
+                    AGDAL School is a prestigious CBSE-affiliated government institution dedicated to providing quality education 
+                    to students from classes 6th to 12th. Our school stands as a beacon of academic excellence and holistic 
+                    development, nurturing young minds to become responsible citizens and future leaders.
+                </p>
+                <p>
+                    Established with the vision of making quality education accessible to all, AGDAL School combines traditional 
+                    values with modern teaching methodologies. We are committed to fostering an environment that encourages 
+                    critical thinking, creativity, and character building.
+                </p>
+                
+                <div class="school-features">
+                    <div class="feature-card">
+                        <h3>CBSE Curriculum</h3>
+                        <p>Following the comprehensive CBSE curriculum with focus on conceptual learning and practical application</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Classes 6-12</h3>
+                        <p>Complete secondary and senior secondary education with specialized streams in Science, Commerce, and Arts</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Government Institution</h3>
+                        <p>A trusted government school providing affordable, quality education with excellent infrastructure</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Holistic Development</h3>
+                        <p>Focus on academic excellence, sports, cultural activities, and personality development programs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academics Section -->
+    <section class="academics-section" id="academics">
+        <div class="container">
+            <div class="academics-content">
+                <h2>Academic Programs</h2>
+                <p>Comprehensive education from classes 6th to 12th with specialized streams</p>
+                
+                <div class="academics-grid">
+                    <div class="academic-card">
+                        <h3>Middle School (Classes 6-8)</h3>
+                        <ul>
+                            <li>Mathematics & Science Foundation</li>
+                            <li>English & Hindi Languages</li>
+                            <li>Social Studies</li>
+                            <li>Computer Science</li>
+                            <li>Physical Education</li>
+                            <li>Art & Craft</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="academic-card">
+                        <h3>Secondary (Classes 9-10)</h3>
+                        <ul>
+                            <li>CBSE Board Preparation</li>
+                            <li>Core Subjects Focus</li>
+                            <li>Laboratory Practicals</li>
+                            <li>Project-Based Learning</li>
+                            <li>Career Guidance</li>
+                            <li>Board Exam Training</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="academic-card">
+                        <h3>Senior Secondary (Classes 11-12)</h3>
+                        <ul>
+                            <li>Science Stream (PCM/PCB)</li>
+                            <li>Commerce Stream</li>
+                            <li>Arts/Humanities Stream</li>
+                            <li>Competitive Exam Prep</li>
+                            <li>Career Counseling</li>
+                            <li>Higher Education Guidance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admissions Section -->
+    <section class="admissions-section" id="admissions">
+        <div class="container">
+            <div class="admissions-content">
+                <h2>Admissions Information</h2>
+                <p>Join our community of learners and embark on a journey of academic excellence</p>
+                
+                <div class="admission-process">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3>Application Form</h3>
+                        <p>Download and fill the admission form from our office or website. Submit with required documents.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3>Document Verification</h3>
+                        <p>Submit previous academic records, birth certificate, address proof, and passport-size photographs.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3>Entrance Test</h3>
+                        <p>Appear for the entrance examination (for classes 9th and 11th) or interview process.</p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3>Admission Confirmation</h3>
+                        <p>Pay the admission fee and complete the enrollment process to secure your seat.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 3rem; padding: 2rem; background: #f7fafc; border-radius: 12px;">
+                    <h3 style="color: #2d3748; margin-bottom: 1rem;">Important Dates</h3>
+                    <p><strong>Application Start:</strong> March 1st, 2024</p>
+                    <p><strong>Application Deadline:</strong> April 30th, 2024</p>
+                    <p><strong>Entrance Test:</strong> May 15th, 2024</p>
+                    <p><strong>Result Declaration:</strong> May 25th, 2024</p>
+                    <p><strong>Admission Fee Payment:</strong> June 1st - 10th, 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Contact Us</h2>
+                    <p>Get in touch with us for any queries or information</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Address:</strong><br>
+                            AGDAL School Campus<br>
+                            Education District, Sector 15<br>
+                            New Delhi - 110001
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <strong>Phone:</strong><br>
+                            +91-11-12345678<br>
+                            +91-11-87654321
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <strong>Email:</strong><br>
+                            info@agdalschool.edu<br>
+                            admissions@agdalschool.edu
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <strong>Office Hours:</strong><br>
+                            Monday - Friday: 8:00 AM - 4:00 PM<br>
+                            Saturday: 8:00 AM - 12:00 PM
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-input" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-input" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-textarea" placeholder="Enter your message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Management System Login -->
     <main class="main-content">
         <div class="container">
             <div class="auth-container">
@@ -327,10 +865,9 @@
                     <h1>Management System</h1>
                     <p id="auth-subtitle">Access your school dashboard</p>
                 </div>
-
                 <div class="auth-content">
                     <div id="message-container"></div>
-
+                    
                     <!-- Login Form -->
                     <div id="login-form">
                         <form id="loginForm">
@@ -344,12 +881,11 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Sign In</button>
                         </form>
-
                         <div class="form-switch">
                             <p>Don't have an account? <a href="#" onclick="showSignup()">Create Account</a></p>
                         </div>
                     </div>
-
+                    
                     <!-- Signup Form -->
                     <div id="signup-form" class="hidden">
                         <form id="signupForm">
@@ -376,12 +912,11 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Create Account</button>
                         </form>
-
                         <div class="form-switch">
                             <p>Already have an account? <a href="#" onclick="showLogin()">Sign In</a></p>
                         </div>
                     </div>
-
+                    
                     <div class="demo-section">
                         <h4>Quick Access</h4>
                         <p>Use demo accounts to explore the system</p>
@@ -395,25 +930,49 @@
         </div>
     </main>
 
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 AGDAL School. All rights reserved. | CBSE Government School | Classes 6th to 12th</p>
+            <p>Committed to Excellence in Education</p>
+        </div>
+    </footer>
+
     <script>
-        // Initialize demo data
+        // Initialize demo data for AGDAL School (Classes 6-12)
         function initializeDemoData() {
             if (!localStorage.getItem('students')) {
                 const demoStudents = [
-                    { id: 1, name: 'Alice Johnson', rollNumber: 'XYZ001', class: '10A', email: 'alice.johnson@xyzschool.edu', phone: '+1-555-0101' },
-                    { id: 2, name: 'Bob Smith', rollNumber: 'XYZ002', class: '10A', email: 'bob.smith@xyzschool.edu', phone: '+1-555-0102' },
-                    { id: 3, name: 'Charlie Brown', rollNumber: 'XYZ003', class: '10B', email: 'charlie.brown@xyzschool.edu', phone: '+1-555-0103' },
-                    { id: 4, name: 'Diana Prince', rollNumber: 'XYZ004', class: '11A', email: 'diana.prince@xyzschool.edu', phone: '+1-555-0104' },
-                    { id: 5, name: 'Edward Norton', rollNumber: 'XYZ005', class: '11A', email: 'edward.norton@xyzschool.edu', phone: '+1-555-0105' },
-                    { id: 6, name: 'Fiona Green', rollNumber: 'XYZ006', class: '11B', email: 'fiona.green@xyzschool.edu', phone: '+1-555-0106' },
-                    { id: 7, name: 'George Wilson', rollNumber: 'XYZ007', class: '12A', email: 'george.wilson@xyzschool.edu', phone: '+1-555-0107' },
-                    { id: 8, name: 'Hannah Davis', rollNumber: 'XYZ008', class: '12A', email: 'hannah.davis@xyzschool.edu', phone: '+1-555-0108' }
+                    { id: 1, name: 'Aarav Sharma', rollNumber: 'AGDAL001', class: '6A', email: 'aarav.sharma@agdalschool.edu', phone: '+91-9876543210' },
+                    { id: 2, name: 'Priya Patel', rollNumber: 'AGDAL002', class: '6B', email: 'priya.patel@agdalschool.edu', phone: '+91-9876543211' },
+                    { id: 3, name: 'Arjun Singh', rollNumber: 'AGDAL003', class: '7A', email: 'arjun.singh@agdalschool.edu', phone: '+91-9876543212' },
+                    { id: 4, name: 'Ananya Gupta', rollNumber: 'AGDAL004', class: '8A', email: 'ananya.gupta@agdalschool.edu', phone: '+91-9876543213' },
+                    { id: 5, name: 'Rohan Kumar', rollNumber: 'AGDAL005', class: '9A', email: 'rohan.kumar@agdalschool.edu', phone: '+91-9876543214' },
+                    { id: 6, name: 'Kavya Reddy', rollNumber: 'AGDAL006', class: '10A', email: 'kavya.reddy@agdalschool.edu', phone: '+91-9876543215' },
+                    { id: 7, name: 'Vikram Joshi', rollNumber: 'AGDAL007', class: '11A - Science', email: 'vikram.joshi@agdalschool.edu', phone: '+91-9876543216' },
+                    { id: 8, name: 'Shreya Agarwal', rollNumber: 'AGDAL008', class: '11B - Commerce', email: 'shreya.agarwal@agdalschool.edu', phone: '+91-9876543217' },
+                    { id: 9, name: 'Karan Mehta', rollNumber: 'AGDAL009', class: '12A - Science', email: 'karan.mehta@agdalschool.edu', phone: '+91-9876543218' },
+                    { id: 10, name: 'Riya Verma', rollNumber: 'AGDAL010', class: '12B - Arts', email: 'riya.verma@agdalschool.edu', phone: '+91-9876543219' }
                 ];
                 localStorage.setItem('students', JSON.stringify(demoStudents));
             }
-
+            
             if (!localStorage.getItem('attendance')) {
                 localStorage.setItem('attendance', JSON.stringify([]));
+            }
+            
+            if (!localStorage.getItem('schoolInfo')) {
+                const schoolInfo = {
+                    name: 'AGDAL School',
+                    type: 'CBSE Government School',
+                    classes: 'Classes 6th to 12th',
+                    streams: ['Science', 'Commerce', 'Arts'],
+                    established: '1995',
+                    affiliation: 'CBSE Board',
+                    address: 'AGDAL School Campus, Education District',
+                    phone: '+91-11-12345678',
+                    email: 'info@agdalschool.edu'
+                };
+                localStorage.setItem('schoolInfo', JSON.stringify(schoolInfo));
             }
         }
 
@@ -433,15 +992,16 @@
         function quickLogin(role) {
             const userData = {
                 name: role === 'admin' ? 'System Administrator' : 'Demo Teacher',
-                email: `${role}@xyzschool.edu`,
-                role: role
+                email: `${role}@agdalschool.edu`,
+                role: role,
+                school: 'AGDAL School'
             };
             
             localStorage.setItem('currentUser', JSON.stringify(userData));
-            showMessage('Login successful! Redirecting...', 'success');
+            showMessage('Login successful! Redirecting to dashboard...', 'success');
             
             setTimeout(() => {
-                window.location.href = 'dashboard.html';
+                alert('Dashboard would load here. This is a demo version.');
             }, 1500);
         }
 
@@ -463,14 +1023,15 @@
                 const userData = {
                     name: email.split('@')[0].replace('.', ' '),
                     email: email,
-                    role: 'teacher'
+                    role: 'teacher',
+                    school: 'AGDAL School'
                 };
                 
                 localStorage.setItem('currentUser', JSON.stringify(userData));
-                showMessage('Login successful! Redirecting...', 'success');
+                showMessage('Login successful! Redirecting to dashboard...', 'success');
                 
                 setTimeout(() => {
-                    window.location.href = 'dashboard.html';
+                    alert('Dashboard would load here. This is a demo version.');
                 }, 1500);
             }
         });
@@ -486,16 +1047,38 @@
                 const userData = {
                     name: name,
                     email: email,
-                    role: role
+                    role: role,
+                    school: 'AGDAL School'
                 };
                 
                 localStorage.setItem('currentUser', JSON.stringify(userData));
-                showMessage('Account created successfully! Redirecting...', 'success');
+                showMessage('Account created successfully! Redirecting to dashboard...', 'success');
                 
                 setTimeout(() => {
-                    window.location.href = 'dashboard.html';
+                    alert('Dashboard would load here. This is a demo version.');
                 }, 1500);
             }
+        });
+
+        // Contact form handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
 
         // Initialize on page load

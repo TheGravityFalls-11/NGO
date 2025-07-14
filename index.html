@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XYZ School - Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 80px);
+            padding: 2rem 0;
+        }
+
+        .auth-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .auth-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .auth-header h1 {
+            font-size: 28px;
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .auth-content {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f7fafc;
+            color: #4a5568;
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #edf2f7;
+        }
+
+        .form-switch {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .form-switch a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .form-switch a:hover {
+            text-decoration: underline;
+        }
+
+        .demo-section {
+            background: #f7fafc;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .demo-section h4 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 16px;
+        }
+
+        .demo-section p {
+            color: #4a5568;
+            font-size: 14px;
+            margin-bottom: 1rem;
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-demo {
+            flex: 1;
+            padding: 8px 12px;
+            font-size: 14px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-demo:hover {
+            background: #5a67d8;
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: #f0fff4;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+
+        .alert-error {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #feb2b2;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .auth-container {
+                margin: 1rem;
+            }
+
+            .demo-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <div class="logo-icon">XYZ</div>
+                    <div class="logo-text">XYZ School</div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#academics">Academics</a></li>
+                    <li><a href="#admissions">Admissions</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h1>Management System</h1>
+                    <p id="auth-subtitle">Access your school dashboard</p>
+                </div>
+
+                <div class="auth-content">
+                    <div id="message-container"></div>
+
+                    <!-- Login Form -->
+                    <div id="login-form">
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" id="loginEmail" class="form-input" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        </form>
+
+                        <div class="form-switch">
+                            <p>Don't have an account? <a href="#" onclick="showSignup()">Create Account</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Signup Form -->
+                    <div id="signup-form" class="hidden">
+                        <form id="signupForm">
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" id="signupName" class="form-input" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" id="signupEmail" class="form-input" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="password" id="signupPassword" class="form-input" placeholder="Create a password" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Role</label>
+                                <select id="signupRole" class="form-select" required>
+                                    <option value="">Select your role</option>
+                                    <option value="teacher">Teacher</option>
+                                    <option value="admin">Administrator</option>
+                                    <option value="student">Student</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create Account</button>
+                        </form>
+
+                        <div class="form-switch">
+                            <p>Already have an account? <a href="#" onclick="showLogin()">Sign In</a></p>
+                        </div>
+                    </div>
+
+                    <div class="demo-section">
+                        <h4>Quick Access</h4>
+                        <p>Use demo accounts to explore the system</p>
+                        <div class="demo-buttons">
+                            <button class="btn-demo" onclick="quickLogin('admin')">Admin Demo</button>
+                            <button class="btn-demo" onclick="quickLogin('teacher')">Teacher Demo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize demo data
+        function initializeDemoData() {
+            if (!localStorage.getItem('students')) {
+                const demoStudents = [
+                    { id: 1, name: 'Alice Johnson', rollNumber: 'XYZ001', class: '10A', email: 'alice.johnson@xyzschool.edu', phone: '+1-555-0101' },
+                    { id: 2, name: 'Bob Smith', rollNumber: 'XYZ002', class: '10A', email: 'bob.smith@xyzschool.edu', phone: '+1-555-0102' },
+                    { id: 3, name: 'Charlie Brown', rollNumber: 'XYZ003', class: '10B', email: 'charlie.brown@xyzschool.edu', phone: '+1-555-0103' },
+                    { id: 4, name: 'Diana Prince', rollNumber: 'XYZ004', class: '11A', email: 'diana.prince@xyzschool.edu', phone: '+1-555-0104' },
+                    { id: 5, name: 'Edward Norton', rollNumber: 'XYZ005', class: '11A', email: 'edward.norton@xyzschool.edu', phone: '+1-555-0105' },
+                    { id: 6, name: 'Fiona Green', rollNumber: 'XYZ006', class: '11B', email: 'fiona.green@xyzschool.edu', phone: '+1-555-0106' },
+                    { id: 7, name: 'George Wilson', rollNumber: 'XYZ007', class: '12A', email: 'george.wilson@xyzschool.edu', phone: '+1-555-0107' },
+                    { id: 8, name: 'Hannah Davis', rollNumber: 'XYZ008', class: '12A', email: 'hannah.davis@xyzschool.edu', phone: '+1-555-0108' }
+                ];
+                localStorage.setItem('students', JSON.stringify(demoStudents));
+            }
+
+            if (!localStorage.getItem('attendance')) {
+                localStorage.setItem('attendance', JSON.stringify([]));
+            }
+        }
+
+        // Authentication functions
+        function showLogin() {
+            document.getElementById('login-form').classList.remove('hidden');
+            document.getElementById('signup-form').classList.add('hidden');
+            document.getElementById('auth-subtitle').textContent = 'Access your school dashboard';
+        }
+
+        function showSignup() {
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('signup-form').classList.remove('hidden');
+            document.getElementById('auth-subtitle').textContent = 'Create your account';
+        }
+
+        function quickLogin(role) {
+            const userData = {
+                name: role === 'admin' ? 'System Administrator' : 'Demo Teacher',
+                email: `${role}@xyzschool.edu`,
+                role: role
+            };
+            
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            showMessage('Login successful! Redirecting...', 'success');
+            
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        }
+
+        function showMessage(message, type) {
+            const container = document.getElementById('message-container');
+            container.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+
+        // Form handlers
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (email && password) {
+                const userData = {
+                    name: email.split('@')[0].replace('.', ' '),
+                    email: email,
+                    role: 'teacher'
+                };
+                
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+                showMessage('Login successful! Redirecting...', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            }
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const role = document.getElementById('signupRole').value;
+            
+            if (name && email && password && role) {
+                const userData = {
+                    name: name,
+                    email: email,
+                    role: role
+                };
+                
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+                showMessage('Account created successfully! Redirecting...', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDemoData();
+        });
+    </script>
+</body>
+</html>

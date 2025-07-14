@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance - XYZ School Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-logout {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background: #c53030;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .page-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .page-subtitle {
+            color: #718096;
+            font-size: 16px;
+            margin-top: 0.5rem;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #38a169;
+        }
+
+        .btn-secondary {
+            background: #718096;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #4a5568;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        /* Form Styles */
+        .form-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Attendance Section */
+        .attendance-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+        }
+
+        .attendance-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .attendance-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .attendance-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .attendance-item:hover {
+            border-color: #667eea;
+            background: #f7fafc;
+        }
+
+        .attendance-item.present {
+            border-color: #48bb78;
+            background: #f0fff4;
+        }
+
+        .attendance-item.absent {
+            border-color: #e53e3e;
+            background: #fed7d7;
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .student-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .student-details h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.25rem;
+        }
+
+        .student-details p {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .attendance-toggle {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: #48bb78;
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .attendance-status {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .attendance-status.present {
+            color: #22543d;
+        }
+
+        .attendance-status.absent {
+            color: #742a2a;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .summary-card {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid;
+        }
+
+        .summary-card.present {
+            border-color: #48bb78;
+            background: #f0fff4;
+        }
+
+        .summary-card.absent {
+            border-color: #e53e3e;
+            background: #fed7d7;
+        }
+
+        .summary-card.rate {
+            border-color: #667eea;
+            background: #f7fafc;
+        }
+
+        .summary-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-number.present {
+            color: #22543d;
+        }
+
+        .summary-number.absent {
+            color: #742a2a;
+        }
+
+        .summary-number.rate {
+            color: #667eea;
+        }
+
+        .summary-label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #4a5568;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #718096;
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+        }
+
+        .empty-state p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Alert */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: #f0fff4;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+
+        .alert-error {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #feb2b2;
+        }
+
+        .alert-info {
+            background: #ebf8ff;
+            color: #2c5282;
+            border: 1px solid #90cdf4;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .page-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .attendance-controls {
+                flex-direction: column;
+            }
+
+            .attendance-item {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <div class="logo-icon">XYZ</div>
+                    <div class="logo-text">XYZ School</div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="students.html">Students</a></li>
+                    <li><a href="attendance.html" class="active">Attendance</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                </ul>
+                <div class="user-menu">
+                    <button class="btn-logout" onclick="logout()">Logout</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Attendance Management</h1>
+                    <p class="page-subtitle">Today: <span id="currentDate"></span></p>
+                </div>
+                <button class="btn btn-success" onclick="saveAttendance()">Save Attendance</button>
+            </div>
+
+            <div id="message-container"></div>
+
+            <!-- Class Selection -->
+            <div class="form-card">
+                <h2 class="form-title">Select Class</h2>
+                <div class="form-group">
+                    <select id="classSelect" class="form-select" onchange="loadClassStudents()">
+                        <option value="">Choose a class...</option>
+                        <option value="9A">Class 9A</option>
+                        <option value="9B">Class 9B</option>
+                        <option value="10A">Class 10A</option>
+                        <option value="10B">Class 10B</option>
+                        <option value="11A">Class 11A</option>
+                        <option value="11B">Class 11B</option>
+                        <option value="12A">Class 12A</option>
+                        <option value="12B">Class 12B</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Attendance Section -->
+            <div id="attendance-section" class="attendance-section hidden">
+                <h2 class="section-title">Mark Attendance</h2>
+                <div class="attendance-controls">
+                    <button class="btn btn-success btn-small" onclick="markAllPresent()">Mark All Present</button>
+                    <button class="btn btn-secondary btn-small" onclick="markAllAbsent()">Mark All Absent</button>
+                </div>
+                <div id="attendance-list" class="attendance-list">
+                    <!-- Attendance items will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Summary Section -->
+            <div id="summary-section" class="summary-section hidden">
+                <h2 class="section-title">Today's Summary</h2>
+                <div class="summary-grid">
+                    <div class="summary-card present">
+                        <div class="summary-number present" id="presentCount">0</div>
+                        <div class="summary-label">Present</div>
+                    </div>
+                    <div class="summary-card absent">
+                        <div class="summary-number absent" id="absentCount">0</div>
+                        <div class="summary-label">Absent</div>
+                    </div>
+                    <div class="summary-card rate">
+                        <div class="summary-number rate" id="attendanceRate">0%</div>
+                        <div class="summary-label">Attendance Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Check authentication
+        function checkAuth() {
+            const user = localStorage.getItem('currentUser');
+            if (!user) {
+                window.location.href = 'index.html';
+                return null;
+            }
+            return JSON.parse(user);
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+        });
+
+        let currentClassStudents = [];
+        let attendanceData = {};
+
+        function loadClassStudents() {
+            const selectedClass = document.getElementById('classSelect').value;
+            if (!selectedClass) {
+                document.getElementById('attendance-section').classList.add('hidden');
+                document.getElementById('summary-section').classList.add('hidden');
+                return;
+            }
+
+            // Get students for selected class
+            const allStudents = JSON.parse(localStorage.getItem('students') || '[]');
+            currentClassStudents = allStudents.filter(student => student.class === selectedClass);
+
+            if (currentClassStudents.length === 0) {
+                document.getElementById('attendance-list').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">👥</div>
+                        <h3>No students in this class</h3>
+                        <p>Add students to this class first to mark attendance.</p>
+                        <a href="students.html" class="btn btn-primary">Add Students</a>
+                    </div>
+                `;
+                document.getElementById('attendance-section').classList.remove('hidden');
+                document.getElementById('summary-section').classList.add('hidden');
+                return;
+            }
+
+            // Initialize attendance data
+            attendanceData = {};
+            currentClassStudents.forEach(student => {
+                attendanceData[student.id] = false; // Default to absent
+            });
+
+            renderAttendanceList();
+            document.getElementById('attendance-section').classList.remove('hidden');
+            document.getElementById('summary-section').classList.remove('hidden');
+            updateSummary();
+        }
+
+        function renderAttendanceList() {
+            const list = document.getElementById('attendance-list');
+            list.innerHTML = currentClassStudents.map(student => `
+                <div class="attendance-item ${attendanceData[student.id] ? 'present' : 'absent'}">
+                    <div class="student-info">
+                        <div class="student-avatar">${student.name.charAt(0).toUpperCase()}</div>
+                        <div class="student-details">
+                            <h4>${student.name}</h4>
+                            <p>Roll: ${student.rollNumber} • Class: ${student.class}</p>
+                        </div>
+                    </div>
+                    <div class="attendance-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" ${attendanceData[student.id] ? 'checked' : ''} 
+                                   onchange="toggleAttendance(${student.id})">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span class="attendance-status ${attendanceData[student.id] ? 'present' : 'absent'}">
+                            ${attendanceData[student.id] ? 'Present' : 'Absent'}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleAttendance(studentId) {
+            attendanceData[studentId] = !attendanceData[studentId];
+            renderAttendanceList();
+            updateSummary();
+        }
+
+        function markAllPresent() {
+            currentClassStudents.forEach(student => {
+                attendanceData[student.id] = true;
+            });
+            renderAttendanceList();
+            updateSummary();
+        }
+
+        function markAllAbsent() {
+            currentClassStudents.forEach(student => {
+                attendanceData[student.id] = false;
+            });
+            renderAttendanceList();
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const present = Object.values(attendanceData).filter(status => status).length;
+            const total = currentClassStudents.length;
+            const absent = total - present;
+            const rate = total > 0 ? Math.round((present / total) * 100) : 0;
+
+            document.getElementById('presentCount').textContent = present;
+            document.getElementById('absentCount').textContent = absent;
+            document.getElementById('attendanceRate').textContent = rate + '%';
+        }
+
+        function saveAttendance() {
+            const selectedClass = document.getElementById('classSelect').value;
+            if (!selectedClass) {
+                showMessage('Please select a class first.', 'error');
+                return;
+            }
+
+            const today = new Date().toISOString().split('T')[0];
+            const attendanceRecord = {
+                id: Date.now(),
+                date: today,
+                class: selectedClass,
+                attendance: attendanceData,
+                timestamp: new Date().toISOString()
+            };
+
+            // Save to localStorage
+            let allAttendance = JSON.parse(localStorage.getItem('attendance') || '[]');
+            
+            // Remove existing record for today and this class
+            allAttendance = allAttendance.filter(record => 
+                !(record.date === today && record.class === selectedClass)
+            );
+            
+            allAttendance.push(attendanceRecord);
+            localStorage.setItem('attendance', JSON.stringify(allAttendance));
+
+            showMessage('Attendance saved successfully!', 'success');
+        }
+
+        function showMessage(message, type) {
+            const container = document.getElementById('message-container');
+            container.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

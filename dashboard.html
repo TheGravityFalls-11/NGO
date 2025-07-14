@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - XYZ School Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .user-role {
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .btn-logout {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background: #c53030;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .page-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: #718096;
+            font-size: 16px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card.students {
+            border-left-color: #667eea;
+        }
+
+        .stat-card.attendance {
+            border-left-color: #48bb78;
+        }
+
+        .stat-card.classes {
+            border-left-color: #ed8936;
+        }
+
+        .stat-card.teachers {
+            border-left-color: #9f7aea;
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-title {
+            color: #718096;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .stat-icon.students {
+            background: #667eea;
+        }
+
+        .stat-icon.attendance {
+            background: #48bb78;
+        }
+
+        .stat-icon.classes {
+            background: #ed8936;
+        }
+
+        .stat-icon.teachers {
+            background: #9f7aea;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-change {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .stat-change.positive {
+            color: #48bb78;
+        }
+
+        .stat-change.negative {
+            color: #e53e3e;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .action-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #4a5568;
+            transition: all 0.3s ease;
+        }
+
+        .action-card:hover {
+            border-color: #667eea;
+            background: #f7fafc;
+            transform: translateY(-2px);
+        }
+
+        .action-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .action-icon.students {
+            background: #667eea;
+        }
+
+        .action-icon.attendance {
+            background: #48bb78;
+        }
+
+        .action-icon.reports {
+            background: #ed8936;
+        }
+
+        .action-icon.settings {
+            background: #9f7aea;
+        }
+
+        .action-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .action-content p {
+            font-size: 14px;
+            color: #718096;
+        }
+
+        /* Recent Activity */
+        .recent-activity {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f7fafc;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+        }
+
+        .activity-icon.success {
+            background: #48bb78;
+        }
+
+        .activity-icon.info {
+            background: #4299e1;
+        }
+
+        .activity-icon.warning {
+            background: #ed8936;
+        }
+
+        .activity-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-content p {
+            font-size: 13px;
+            color: #718096;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .user-menu {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <div class="logo-icon">XYZ</div>
+                    <div class="logo-text">XYZ School</div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                    <li><a href="students.html">Students</a></li>
+                    <li><a href="attendance.html">Attendance</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                </ul>
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="user-name" id="userName">User</div>
+                        <div class="user-role" id="userRole">Teacher</div>
+                    </div>
+                    <button class="btn-logout" onclick="logout()">Logout</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Dashboard</h1>
+                <p class="page-subtitle">Welcome back! Here's what's happening at XYZ School today.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card students">
+                    <div class="stat-header">
+                        <div class="stat-title">Total Students</div>
+                        <div class="stat-icon students">👥</div>
+                    </div>
+                    <div class="stat-number" id="totalStudents">0</div>
+                    <div class="stat-change positive">+12 this month</div>
+                </div>
+
+                <div class="stat-card attendance">
+                    <div class="stat-header">
+                        <div class="stat-title">Attendance Rate</div>
+                        <div class="stat-icon attendance">✓</div>
+                    </div>
+                    <div class="stat-number" id="attendanceRate">0%</div>
+                    <div class="stat-change positive">+2.5% from last week</div>
+                </div>
+
+                <div class="stat-card classes">
+                    <div class="stat-header">
+                        <div class="stat-title">Active Classes</div>
+                        <div class="stat-icon classes">📚</div>
+                    </div>
+                    <div class="stat-number" id="activeClasses">0</div>
+                    <div class="stat-change positive">All classes running</div>
+                </div>
+
+                <div class="stat-card teachers">
+                    <div class="stat-header">
+                        <div class="stat-title">Faculty Members</div>
+                        <div class="stat-icon teachers">👨‍🏫</div>
+                    </div>
+                    <div class="stat-number">24</div>
+                    <div class="stat-change positive">2 new hires</div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <h2 class="section-title">Quick Actions</h2>
+                <div class="actions-grid">
+                    <a href="students.html" class="action-card">
+                        <div class="action-icon students">👥</div>
+                        <div class="action-content">
+                            <h3>Manage Students</h3>
+                            <p>Add, edit, and view student records</p>
+                        </div>
+                    </a>
+                    <a href="attendance.html" class="action-card">
+                        <div class="action-icon attendance">✓</div>
+                        <div class="action-content">
+                            <h3>Take Attendance</h3>
+                            <p>Mark daily attendance for classes</p>
+                        </div>
+                    </a>
+                    <a href="reports.html" class="action-card">
+                        <div class="action-icon reports">📊</div>
+                        <div class="action-content">
+                            <h3>View Reports</h3>
+                            <p>Generate and view academic reports</p>
+                        </div>
+                    </a>
+                    <a href="#" class="action-card">
+                        <div class="action-icon settings">⚙️</div>
+                        <div class="action-content">
+                            <h3>Settings</h3>
+                            <p>Configure system preferences</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h2 class="section-title">Recent Activity</h2>
+                <div class="activity-list" id="activityList">
+                    <!-- Activity items will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Check authentication
+        function checkAuth() {
+            const user = localStorage.getItem('currentUser');
+            if (!user) {
+                window.location.href = 'index.html';
+                return null;
+            }
+            return JSON.parse(user);
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        // Load dashboard data
+        function loadDashboard() {
+            const user = checkAuth();
+            if (!user) return;
+
+            // Update user info
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userRole').textContent = user.role.charAt(0).toUpperCase() + user.role.slice(1);
+
+            // Load statistics
+            loadStatistics();
+            loadRecentActivity();
+        }
+
+        function loadStatistics() {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const attendance = JSON.parse(localStorage.getItem('attendance') || '[]');
+
+            // Calculate stats
+            const totalStudents = students.length;
+            const classes = [...new Set(students.map(s => s.class))].filter(c => c);
+            const activeClasses = classes.length;
+
+            // Calculate attendance rate
+            let attendanceRate = 0;
+            if (attendance.length > 0) {
+                const totalRecords = attendance.reduce((sum, record) => {
+                    return sum + Object.keys(record.attendance).length;
+                }, 0);
+                const presentRecords = attendance.reduce((sum, record) => {
+                    return sum + Object.values(record.attendance).filter(status => status).length;
+                }, 0);
+                attendanceRate = totalRecords > 0 ? Math.round((presentRecords / totalRecords) * 100) : 0;
+            }
+
+            // Update UI with animation
+            animateNumber('totalStudents', totalStudents);
+            animateNumber('attendanceRate', attendanceRate, '%');
+            animateNumber('activeClasses', activeClasses);
+        }
+
+        function animateNumber(elementId, targetValue, suffix = '') {
+            const element = document.getElementById(elementId);
+            let currentValue = 0;
+            const increment = targetValue / 30;
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(currentValue) + suffix;
+            }, 50);
+        }
+
+        function loadRecentActivity() {
+            const activities = [
+                {
+                    type: 'success',
+                    title: 'Attendance marked for Class 10A',
+                    description: '28 out of 30 students present • 2 hours ago',
+                    icon: '✓'
+                },
+                {
+                    type: 'info',
+                    title: 'New student enrolled',
+                    description: 'Sarah Johnson joined Class 9B • 5 hours ago',
+                    icon: '👤'
+                },
+                {
+                    type: 'success',
+                    title: 'Monthly report generated',
+                    description: 'Academic performance report for October • 1 day ago',
+                    icon: '📊'
+                },
+                {
+                    type: 'warning',
+                    title: 'Low attendance alert',
+                    description: 'Class 11B attendance below 80% • 2 days ago',
+                    icon: '⚠️'
+                }
+            ];
+
+            const activityList = document.getElementById('activityList');
+            activityList.innerHTML = activities.map(activity => `
+                <div class="activity-item">
+                    <div class="activity-icon ${activity.type}">${activity.icon}</div>
+                    <div class="activity-content">
+                        <h4>${activity.title}</h4>
+                        <p>${activity.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboard();
+        });
+    </script>
+</body>
+</html>

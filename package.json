@@ -1,0 +1,20 @@
+{
+  "name": "school-management-frontend",
+  "version": "1.0.0",
+  "description": "Pure Frontend School Management System with Happy Colors",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "dev": "live-server ."
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "keywords": ["school", "management", "frontend", "javascript", "html", "css"],
+  "author": "School Management Team",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

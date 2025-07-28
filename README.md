@@ -21,7 +21,7 @@ The system is designed to operate **entirely offline**, supports **Docker-based 
 ---
 
 ## 🔁 Flowchart  
-> *(Insert pipeline image here showing: PDF → Image Rendering → YOLOv9 ONNX → Heading Detection → Text Mapping → Structured JSON)*
+![Image](https://github.com/user-attachments/assets/906885a1-4a84-4798-8f40-94e71b52cbf3)
 
 ---
 

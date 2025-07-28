@@ -27,17 +27,21 @@ The system is designed to operate **entirely offline**, supports **Docker-based 
 
 ## 📁 Folder Structure
 
-```
-Challenge_1a/
-├── sample_dataset/
-│   ├── outputs/         # JSON output files generated after processing
-│   ├── pdfs/            # Input PDF files to be parsed
-│   └── schema/          # JSON schema defining output structure
-│       └── output_schema.json
-├── Dockerfile           # Docker container setup file
-├── process_pdfs.py      # Main PDF processing pipeline
-└── README.md            # This documentation file
-```
+Adobe hackathon/
+├── .venv/                            # Python virtual environment (excluded from version control)
+├── sample_dataset/                  # Sample dataset folder
+│   ├── outputs/                     # Generated JSON outputs
+│   ├── pdfs/                        # Input PDF files
+│   └── schema/                      # Output schema JSON definition
+│
+├── Dockerfile                       # Docker setup for containerizing the pipeline
+├── doclaynet.yaml                   # Custom YOLO configuration file
+├── process_pdfs.py                  # Main pipeline script for PDF processing
+├── process_pdfs copy.py             # Backup or alternative version of the main script
+├── requirements.txt                 # Python dependencies for the project
+├── yolo-doclaynet.onnx              # Quantized ONNX model (for offline inference)
+└── yolo-doclaynet.pt                # PyTorch YOLO model (for offline inference)
+
 
 ---
 

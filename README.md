@@ -49,22 +49,14 @@ adobe_hackathon/
 
 > Ensure [Docker](https://docs.docker.com/get-docker/) is installed on your system.
 
-**Step 1: Build the Docker image**
-```bash
+```cmd
 docker build --platform linux/amd64 -t pdf-processor .
+
+docker run -v "C:\Users\iamjo\OneDrive\Desktop\final_adobbe_project\Adobe_hackathon\sample_dataset\pdfs:/app/input" ^
+           -v "C:\Users\iamjo\OneDrive\Desktop\final_adobbe_project\Adobe_hackathon\sample_dataset\outputs:/app/output" ^
+           --network none pdf-processor
 ```
 
-**Step 2: Run the container**
-```bash
-docker run --rm ^
-  -v "${PWD}\sample_dataset\pdfs:/app/input:ro" ^
-  -v "${PWD}\sample_dataset\outputs:/app/output" ^
-  --network none pdf-processor
-```
-
- *On Linux/macOS use `$(pwd)` instead of `${PWD}`.*
-
----
 
 ##  Features
 

@@ -13,7 +13,7 @@
 
 This project presents an efficient, offline-capable, AI-driven pipeline for converting unstructured PDFs into structured, semantically rich JSON representations. We address the challenge of document understanding by fusing **visual layout detection** and **linguistic parsing** — optimized for constrained, CPU-only environments.
 
-A compact ONNX-converted **YOLOv9-Tiny object detection model**, trained on heading-level detection (H1–H3), is employed for layout segmentation. Pages are rendered into images and passed through the model to identify structural zones without relying on unreliable metadata tags. Detected headings are then algorithmically aligned with text spans using **PyMuPDF** and **pdfplumber**, ensuring high-fidelity reconstruction of document outlines. The final output conforms to a custom-defined JSON schema suitable for downstream knowledge extraction or navigation applications.
+A compact ONNX-converted **YOLOv9-Tiny object detection model**, trained on heading-level detection (H1–H6), is employed for layout segmentation. Pages are rendered into images and passed through the model to identify structural zones without relying on unreliable metadata tags. Detected headings are then algorithmically aligned with text spans using **PyMuPDF** and **pdfplumber**, ensuring high-fidelity reconstruction of document outlines. The final output conforms to a custom-defined JSON schema suitable for downstream knowledge extraction or navigation applications.
 
 The system is designed to operate **entirely offline**, supports **Docker-based deployment**, and processes documents rapidly with minimal resource footprint.
 
@@ -68,7 +68,7 @@ docker run --rm ^
 - ✅ Built using **YOLOv9-Tiny**, optimized with ONNX (~42MB) for fast and efficient visual document segmentation  
 - ✅ Complete offline execution with no external API calls, running at ~0.5s/page on a standard **8-core CPU**  
 - ✅ Robustly handles diverse PDF layouts, including documents with **mixed structures**, **images**, and **tables**  
-- ✅ Automatically infers document hierarchy (H1–H3) from visual layout without relying on tags or metadata  
+- ✅ Automatically infers document hierarchy (H1–H6) from visual layout without relying on tags or metadata  
 - ✅ Delivers structured, **schema-compliant** JSON outputs that are easy to integrate with downstream systems  
 - ✅ Fully Dockerized for consistent, secure, and reproducible deployment across platforms  
 

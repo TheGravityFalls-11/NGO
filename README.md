@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Model%20Size-20MB-blueviolet?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Runtime-Offline%20%7C%20CPU--Only-success?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Execution%20Time-~06s%2F-yellow?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Execution%20Time-~06s-yellow?style=for-the-badge"/>
  <img src="https://img.shields.io/badge/Tech%20Stack-Python%20%7C%20ONNX%20%7C%20YOLOv9--Tiny-ff69b4?style=for-the-badge"/>
 
 </p>

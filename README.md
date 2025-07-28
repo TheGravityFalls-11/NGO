@@ -75,7 +75,7 @@ docker run --rm ^
 
 ---
 
-### ✅ Validation Checklist  
+### ✅ Validation Checklist
 The solution has been tested and verified against the following constraints and requirements:
 
 - [x] All PDFs in the input directory are successfully processed  
@@ -86,6 +86,7 @@ The solution has been tested and verified against the following constraints and 
 - [x] Works entirely offline with no internet dependency  
 - [x] Memory usage consistently stays within a 16GB limit  
 - [x] Fully compatible with AMD64 (x86_64) architecture
+
       
 ---
 

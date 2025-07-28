@@ -76,16 +76,17 @@ docker run --rm ^
 ---
 
 ### ✅ Validation Checklist
+
 The solution has been tested and verified against the following constraints and requirements:
 
-- [x] All PDFs in the input directory are successfully processed  
-- [x] JSON output is generated for each corresponding PDF  
-- [x] Output adheres to the defined schema (`sample_dataset/schema/output_schema.json`)  
-- [x] Output structure matches required hierarchical format  
-- [x] Processes 50-page PDF documents in under 10 seconds (on 8-core CPU)  
-- [x] Works entirely offline with no internet dependency  
-- [x] Memory usage consistently stays within a 16GB limit  
-- [x] Fully compatible with AMD64 (x86_64) architecture
+- ✅ All PDFs in the input directory are successfully processed  
+- ✅ JSON output is generated for each corresponding PDF  
+- ✅ Output adheres to the defined schema (`sample_dataset/schema/output_schema.json`)  
+- ✅ Output structure matches required hierarchical format  
+- ✅ Processes 50-page PDF documents in under 10 seconds (on 8-core CPU)  
+- ✅ Works entirely offline with no internet dependency  
+- ✅ Memory usage consistently stays within a 16GB limit  
+- ✅ Fully compatible with AMD64 (x86_64) architecture
 
       
 ---

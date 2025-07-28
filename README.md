@@ -6,11 +6,11 @@
 
 </p>
 
-# 🧠 Intelligent Offline PDF Structuring using ONNX-YOLOv9 & Heuristic Parsing
+#  Intelligent Offline PDF Structuring using ONNX-YOLOv9 & Heuristic Parsing
 
 ---
 
-## 📌 Abstract
+##  Abstract
 
 This project presents an efficient, offline-capable, AI-driven pipeline for converting unstructured PDFs into structured, semantically rich JSON representations. We address the challenge of document understanding by fusing **visual layout detection** and **linguistic parsing** — optimized for constrained, CPU-only environments.
 
@@ -20,30 +20,28 @@ The system is designed to operate **entirely offline**, supports **Docker-based 
 
 ---
 
-## 🔁 Flowchart  
+##  Flowchart  
 ![Image](https://github.com/user-attachments/assets/906885a1-4a84-4798-8f40-94e71b52cbf3)
 
 ---
 
-## 📁 Folder Structure
+##  Folder Structure
 
-Adobe hackathon/
-├── .venv/                            # Python virtual environment (excluded from version control)
-├── sample_dataset/                  # Sample dataset folder
-│   ├── outputs/                     # Generated JSON outputs
-│   ├── pdfs/                        # Input PDF files
-│   └── schema/                      # Output schema JSON definition
-│
-├── Dockerfile                       # Docker setup for containerizing the pipeline
-├── doclaynet.yaml                   # Custom YOLO configuration file
-├── process_pdfs.py                  # Main pipeline script for PDF processing
-├── process_pdfs copy.py             # Backup or alternative version of the main script
-├── requirements.txt                 # Python dependencies for the project
-├── yolo-doclaynet.onnx              # Quantized ONNX model (for offline inference)
-└── yolo-doclaynet.pt                # PyTorch YOLO model (for offline inference)
+```
+adobe_hackathon/
+├── sample_dataset/
+│   ├── outputs/                  # Stores processed output (e.g., JSONs, visualizations)
+│   ├── pdfs/                     # Contains input PDF documents to be analyzed
+│   └── schema/                   # Schema definitions or templates used for structuring outputs
+├── Dockerfile                    # Dockerfile to containerize the app
+├── doclaynet.yaml                # YOLOv5/YOLOv8 config file for DocLayNet model
+├── process_pdfs.py               # Main script to process PDF files using the trained model
+├── requirements.txt              # Python dependencies
+├── yolo-doclaynet.onnx           # YOLOv5 ONNX model for inference
+└── yolo-doclaynet.pt             # YOLOv5 PyTorch model file
+```
 
 
----
 
 ## ⚙️ How to Run
 
@@ -64,11 +62,11 @@ docker run --rm ^
   --network none pdf-processor
 ```
 
-📌 *On Linux/macOS use `$(pwd)` instead of `${PWD}`.*
+ *On Linux/macOS use `$(pwd)` instead of `${PWD}`.*
 
 ---
 
-## 💡 Features
+##  Features
 
 - ✅ Built using **YOLOv9-Tiny**, optimized with ONNX (~42MB) for fast and efficient visual document segmentation  
 - ✅ Complete offline execution with no external API calls, running at ~0.5s/page on a standard **8-core CPU**  
@@ -79,7 +77,7 @@ docker run --rm ^
 
 ---
 
-### ✅ Validation Checklist
+###  Validation Checklist
 
 The solution has been tested and verified against the following constraints and requirements:
 
@@ -95,7 +93,7 @@ The solution has been tested and verified against the following constraints and 
       
 ---
 
-## 📚 References
+##  References
 
 - 📄 [LayoutLM: Pre-training of Text and Layout for Document Image Understanding](https://arxiv.org/pdf/1809.01477)
 - 🗂️ [OmniDocBench: Benchmark Dataset for Document AI](https://github.com/opendatalab/OmniDocBench)  

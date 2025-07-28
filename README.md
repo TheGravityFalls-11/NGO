@@ -2,7 +2,8 @@
   <img src="https://img.shields.io/badge/Model%20Size-42MB-blueviolet?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Runtime-Offline%20%7C%20CPU--Only-success?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Execution%20Time-~0.5s%2Fpage-yellow?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Tech Stack-Python%20%7C%20ONNX%20%7C%20YOLOv9-Tiny-ff69b4?style=for-the-badge"/>
+ <img src="https://img.shields.io/badge/Tech%20Stack-Python%20%7C%20ONNX%20%7C%20YOLOv9--Tiny-ff69b4?style=for-the-badge"/>
+
 </p>
 
 # 🧠 Intelligent Offline PDF Structuring using ONNX-YOLOv9 & Heuristic Parsing
